@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+<!-- this template allows you to delete rooms, messages, topics, etc.-->
+
+{% block content %}
+
+
+    <form method="POST" action="">
+        {% csrf_token %} <!-- to avoid cross site request forgery & injection attacks -->
+        <p>Are you sure you want to delete "{{obj}}"?</p>
+        <a href="{{request.META.HTTP_REFERER}}">Go Back</a> <!-- send the user back to the page they were on previously -->
+        <input type="Submit" value="Confirm" />
+    </form>
+
+
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <h1>Home Template</h1>
+
+    <div>
+
+        <a href="{% url 'baseapproute:create-room' %}">Create Room</a>
+
+        <div>
+            {% for room in rooms %}
+                <div>
+                    <a href="{% url 'baseapproute:update-room' room.id %}">Edit</a>
+                    <a href ="{% url 'baseapproute:delete-room' room.id %}">Delete</a>
+                    <span>@{{room.host.username}}</span> <!-- shows the username of who created the room-->
+                    <!-- USING URL NAMESPACE INSTEAD OF DIRECT URL PATH; only use ONE set of curly braces -->
+                    <h3>Room #{{room.id}} --- <a href="{% url 'baseapproute:room' room.id %}">{{room.name}}</a> </h3>
+                    <small>{{room.topic.name}}</small>
+                    <hr>
+
+                    <!-- SAME AS ABOVE 
+                        <h3>Room #{{room.id}} --- <a href="{/room/{{room.id}}}">{{room.name}}</a> </h3> -->
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock content %}
